@@ -1,3 +1,4 @@
+
 let computerMove= '';
 let humanMove = '';
  let getComputerChoice= ()=> {
@@ -9,26 +10,25 @@ let humanMove = '';
     }else if (randomMove >= 2/3 && randomMove <= 1){
         computerMove = 'scissors'
     }
-    console.log(computerMove)
-    console.log(randomMove)
     return computerMove;
 }
 getComputerChoice()
 
 let getHumanChoice = () => {
     humanMove = prompt("Rock Paper Scissors. Choose & type one!");
-    return humanMove ? humanMove.toUpperCase() : '';
+    return humanMove? humanMove : '';
 }
-console.log(getHumanChoice())
+getHumanChoice()
 
 
+    let humanChoice = 0;
+    let computerChoice = 0;
+    let tie = 0;
 
-let humanChoice = 0;
-let computerChoice = 0;
-let tie = 0;
+
 let Result = "";
 
-function playRound(){  
+function declareResult(){  
  humanMove = humanMove.toUpperCase()
         if (computerMove === 'paper' && humanMove === 'PAPER'){
             Result = "tie";
@@ -52,25 +52,26 @@ function playRound(){
             Result = "lose";
         } else if (computerMove === 'scissors' && humanMove === 'PAPER'){
             Result = "lose";
-        } else{
-            Result = "Undefined"
-            console.log(computerMove , humanMove)
         }
 }
-playRound();
+declareResult();
 console.log(Result)
 
 function score(){
     if (Result === 'tie') {
       tie += 1;
     } else if(Result === 'win'){
-      humanChoice += 1;
+      humanChoice ++;
     } else if(Result === 'lose'){
-      computerChoice += 1;
+      computerChoice ++;
     }else{
         "error"
     }
 }
-console.log(score())
+score();
+console.log(`I chose : ${computerMove} 
+You chose : ${humanMove}
+${Result}
+Your Score : ${humanChoice} , My Score: ${computerChoice}  , Tie : ${tie}`)
 
 
