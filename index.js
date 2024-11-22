@@ -84,17 +84,19 @@ function playRound(){
     declareResult();
     score();
    // round++
-    
-
-    
-}
- playRound()
- rock.addEventListener('click' , playRound);
- paper.addEventListener('click' , playRound);
- scissors.addEventListener('click' , playRound);
- display.addEventListener('click' , () => {
-   `I chose : ${computerMove} 
+   display.innerHTML = `I chose : ${computerMove} 
     You chose : ${humanMove}
     ${Result}
-    Your Score : ${humanChoice} , My Score: ${computerChoice}  , Tie : ${tie}` 
- })
+    Your Score : ${humanChoice} , My Score: ${computerChoice}  , Tie : ${tie}`
+}
+
+function displayResult(){
+   
+}
+
+
+rock.addEventListener('click' , playRound);
+paper.addEventListener('click' , playRound);
+scissors.addEventListener('click' , playRound);
+//display.addEventListener('click' , displayResult);
+  
