@@ -13,12 +13,22 @@ let humanMove = '';
     return computerMove;
 }
 
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const display = document.querySelector('#displayResult')
+
 
 let getHumanChoice = () => {
-    humanMove = prompt("Rock Paper Scissors. Choose & type one!");
-    return humanMove? humanMove : '';
+    if (rock){
+    humanMove = 'ROCK'
+    } else if(paper){
+    humanMove = 'PAPER'
+    } else{
+    humanMove = 'SCISSORS'}
+    return humanMove;
 }
-
+console.log(humanMove);
 
 let humanChoice = 0;
 let computerChoice = 0;
@@ -68,17 +78,23 @@ function score(){
 }
 
 function playRound(){
-    for (let i = 1; i <=5; i++){
+   // for (let i = 1; i <=5; i++){
     getComputerChoice();
     getHumanChoice();
     declareResult();
     score();
-    round++
-    console.log(` Round number = ${round}
-    I chose : ${computerMove} 
+   // round++
+    
+
+    
+}
+ playRound()
+ rock.addEventListener('click' , playRound);
+ paper.addEventListener('click' , playRound);
+ scissors.addEventListener('click' , playRound);
+ display.addEventListener('click' , () => {
+   `I chose : ${computerMove} 
     You chose : ${humanMove}
     ${Result}
-    Your Score : ${humanChoice} , My Score: ${computerChoice}  , Tie : ${tie}`
-    )}
-}
-playRound()
+    Your Score : ${humanChoice} , My Score: ${computerChoice}  , Tie : ${tie}` 
+ })
