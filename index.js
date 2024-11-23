@@ -1,4 +1,3 @@
-
 let computerMove= '';
 let humanMove = '';
  let getComputerChoice= ()=> {
@@ -13,11 +12,10 @@ let humanMove = '';
     return computerMove;
 }
 
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors');
-const display = document.querySelector('#displayResult')
-
+const rock = document.getElementById("rock")
+const paper =  document.getElementById("paper");
+const scissors =  document.getElementById("scissors");
+const display =  document.getElementById("displayResult");
 
 let getHumanChoice = () => {
     if (rock){
@@ -28,7 +26,6 @@ let getHumanChoice = () => {
     humanMove = 'SCISSORS'}
     return humanMove;
 }
-console.log(humanMove);
 
 let humanScore = 0;
 let computerScore = 0;
@@ -78,19 +75,34 @@ function score(){
 }
 
 function playRound(){
-   for (let i = 1; i <=1; i++){
-    getComputerChoice();
-    getHumanChoice();
-    declareResult();
-    score();
-    round ++;
-   display.innerHTML = 
-`<p>Round : ${round}</p>
-<p>I chose : ${computerMove} </p>
-<p>You chose : ${humanMove} </p>
-<p>${Result}</p>
-<p>Your Score : ${humanScore} , My Score: ${computerScore}  , Tie : ${tie}</p>`
+            getComputerChoice();
+            getHumanChoice();
+            declareResult();
+            score();
+            round ++;
+           display.innerHTML = 
+        `<p>Round : ${round}</p1>
+        <p>I chose : ${computerMove} </p>
+        <p>You chose : ${humanMove} </p>
+        <p>${Result}</p>
+        <p>Your Score : ${humanScore} , My Score: ${computerScore}  , Tie : ${tie}</p>`
+        displayResult();
+    
+}
+
+
+function displayResult(){
+    if(humanScore === 5){
+       display.innerHTML = `<h1> YOU HAVE WON </h1>`
+    }else if(computerScore === 5){
+        display.innerHTML = `<h1> I HAVE WON </h1>`
+    }else if(tie === 5){
+        display.innerHTML =  `<h1> WE TIED </h1>`
 }}
+
+
+
+
 
 
 ['rock', 'paper', 'scissors'].forEach(id => {
