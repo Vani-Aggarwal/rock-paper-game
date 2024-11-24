@@ -1,5 +1,6 @@
 let computerMove= '';
 let humanMove = '';
+let userInput = '';
  let getComputerChoice= ()=> {
     randomMove = Math.random();
     if(randomMove >= 0 && randomMove <= 1/3){
@@ -12,62 +13,61 @@ let humanMove = '';
     return computerMove;
 }
 
-const rock = document.getElementById("rock")
-const paper =  document.getElementById("paper");
-const scissors =  document.getElementById("scissors");
-const display =  document.getElementById("displayResult");
+const rock = document.querySelector("#rock");
+const scissors = document.querySelector('#scissors');
+const paper = document.querySelector('paper');
+const display =  document.querySelector("#displayResult");
 
-let getHumanChoice = () => {
-    if (rock){
-    humanMove = 'ROCK'
-    } else if(paper){
-    humanMove = 'PAPER'
-    } else{
-    humanMove = 'SCISSORS'}
+
+function getHumanChoice(event){
+    humanMove = event.target.textContent;
     return humanMove;
 }
+
 
 let humanScore = 0;
 let computerScore = 0;
 let tie = 0;
 let round = 0;
-let Result = "";
+let result = "";
 
 function declareResult(){  
- humanMove = humanMove.toUpperCase()
  if (humanMove === 'PAPER' || humanMove === 'ROCK' || humanMove === 'SCISSORS'){
     if (computerMove === 'PAPER' && humanMove === 'PAPER'){
-        Result = "WE TIE";
+        result = "WE TIE";
     } else if (computerMove === 'ROCK' && humanMove=== 'ROCK'){
-        Result = "WE TIE";
+        result = "WE TIE";
     } else if (computerMove === 'SCISSORS' && humanMove === 'SCISSORS'){
-        Result = "WE TIE";
+        result = "WE TIE";
     }
     
     else if (computerMove === 'PAPER' && humanMove === 'SCISSORS'){
-        Result = "YOU WIN";
+        result = "YOU WIN";
     } else if (computerMove === 'ROCK' && humanMove === 'PAPER'){
-        Result = "YOU WIN";
+        result = "YOU WIN";
     } else if (computerMove === 'SCISSORS' && humanMove === 'ROCK'){
-        Result = "YOU WIN";
+        result = "YOU WIN";
     }
     
     else if (computerMove === 'PAPER' && humanMove === 'ROCK'){
-        Result = "YOU LOSE";
+        result = "YOU LOSE";
     } else if (computerMove === 'ROCK' && humanMove === 'SCISSORS'){
-        Result = "YOU LOSE";
+        result = "YOU LOSE";
     } else if (computerMove === 'SCISSORS' && humanMove === 'PAPER'){
-        Result = "YOU LOSE";
+        result = "YOU LOSE";
     }}
-    else{Result ='undefined'}
+    
+    else{
+        result = "undefined"
+    }
 }
 
 function score(){
-    if (Result === 'WE TIE') {
+    if (result === 'WE TIE') {
       tie ++;
-    } else if(Result === 'YOU WIN'){
+    } else if(result === 'YOU WIN'){
       humanScore ++ ;
-    } else if(Result === 'YOU LOSE'){
+    } else if(result === 'YOU LOSE'){
       computerScore ++;
     }else{
         "error"
@@ -75,18 +75,18 @@ function score(){
 }
 
 function playRound(){
-            getComputerChoice();
-            getHumanChoice();
-            declareResult();
-            score();
-            round ++;
-           display.innerHTML = 
-        `<p>Round : ${round}</p1>
-        <p>I chose : ${computerMove} </p>
-        <p>You chose : ${humanMove} </p>
-        <p>${Result}</p>
-        <p>Your Score : ${humanScore} , My Score: ${computerScore}  , Tie : ${tie}</p>`
-        displayResult();
+        getComputerChoice();
+       getHumanChoice(event);
+        declareResult();
+        score();
+        round ++;
+        display.innerHTML = 
+    `<p>Round : ${round}</p1>
+    <p>I chose : ${computerMove} </p>
+    <p>You chose : ${humanMove} </p>
+    <p>${result}</p>
+    <p>Your Score : ${humanScore} , My Score: ${computerScore}  , Tie : ${tie}</p>`
+    displayResult();
     
 }
 
@@ -101,13 +101,10 @@ function displayResult(){
 }}
 
 
-
-
-
-
 ['rock', 'paper', 'scissors'].forEach(id => {
     document.getElementById(id).addEventListener('click', playRound);
 });
+
 
 
   
