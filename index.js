@@ -74,6 +74,14 @@ function score(){
     }
 }
 
+function restartGame(){
+    if(tie === 5 || humanScore === 5 || computerScore === 5){
+        tie = 0;
+        humanScore = 0;
+        computerScore = 0;
+    }
+}
+
 function playRound(){
         getComputerChoice();
        getHumanChoice(event);
@@ -87,17 +95,18 @@ function playRound(){
     <p>${result}</p>
     <p>Your Score : ${humanScore} , My Score: ${computerScore}  , Tie : ${tie}</p>`
     displayResult();
+    restartGame()
     
 }
 
 
 function displayResult(){
     if(humanScore === 5){
-       display.innerHTML = `<h1> YOU HAVE WON </h1>`
+       display.innerHTML = `<h1> YOU HAVE WON , LET'S RESTART </h1>`
     }else if(computerScore === 5){
-        display.innerHTML = `<h1> I HAVE WON </h1>`
+        display.innerHTML = `<h1> I HAVE WON , LET'S RESTART </h1>`
     }else if(tie === 5){
-        display.innerHTML =  `<h1> WE TIED </h1>`
+        display.innerHTML =  `<h1> WE TIED , LET'S RESTART </h1>`
 }}
 
 
